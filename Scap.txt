@@ -1,0 +1,371 @@
+local CoreGui = game:GetService('CoreGui')
+local UserInputService = game:GetService('UserInputService')
+local Players = game:GetService('Players')
+local RunService = game:GetService('RunService')
+local TweenService = game:GetService('TweenService')
+
+-- Clean up old GUIs
+local oldFlash = CoreGui:FindFirstChild("FlashGrabGUI")
+local oldFPS = CoreGui:FindFirstChild("FPSPingDisplay")
+local oldWatermark = Players.LocalPlayer.PlayerGui:FindFirstChild("U95X_Watermark")
+
+if oldFlash then oldFlash:Destroy() end
+if oldFPS then oldFPS:Destroy() end
+if oldWatermark then oldWatermark:Destroy() end
+
+-- Main GUI
+local mainGui = Instance.new("ScreenGui")
+mainGui.Name = "FlashGrabGUI"
+mainGui.ResetOnSpawn = false
+mainGui.Parent = CoreGui
+mainGui.IgnoreGuiInset = true
+mainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- FPS/Ping Display GUI
+local fpsGui = Instance.new("ScreenGui")
+fpsGui.Name = "FPSPingDisplay"
+fpsGui.ResetOnSpawn = false
+fpsGui.Parent = CoreGui
+fpsGui.IgnoreGuiInset = true
+
+-- FPS/Ping Label
+local statsLabel = Instance.new("TextLabel")
+statsLabel.Name = "StatsLabel"
+statsLabel.Size = UDim2.new(0, 200, 0, 50)
+statsLabel.Position = UDim2.new(0.5, -100, 0, 10)
+statsLabel.BackgroundTransparency = 1
+statsLabel.Text = "0 | 0"
+statsLabel.TextColor3 = Color3.fromRGB(255, 200, 0)
+statsLabel.TextSize = 36
+statsLabel.Font = Enum.Font.GothamBold
+statsLabel.TextStrokeTransparency = 0.5
+statsLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+statsLabel.Parent = fpsGui
+
+-- Main Frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 240, 0, 200)
+mainFrame.Position = UDim2.new(0.5, -120, 0.5, -100)
+mainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+mainFrame.BackgroundTransparency = 0.1
+mainFrame.BorderSizePixel = 2
+mainFrame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+mainFrame.Active = true
+mainFrame.Parent = mainGui
+
+-- UICorner
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 8)
+corner.Parent = mainFrame
+
+-- Title Bar (for dragging)
+local titleBar = Instance.new("Frame")
+titleBar.Name = "TitleBar"
+titleBar.Size = UDim2.new(1, 0, 0, 35)
+titleBar.Position = UDim2.new(0, 0, 0, 0)
+titleBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+titleBar.BackgroundTransparency = 0.2
+titleBar.Parent = mainFrame
+
+local titleCorner = Instance.new("UICorner")
+titleCorner.CornerRadius = UDim.new(0, 8)
+titleCorner.Parent = titleBar
+
+-- Title Text
+local titleText = Instance.new("TextLabel")
+titleText.Name = "Title"
+titleText.Size = UDim2.new(1, -40, 1, 0)
+titleText.Position = UDim2.new(0, 10, 0, 0)
+titleText.BackgroundTransparency = 1
+titleText.Text = "Rookie Flash TP ⚡"
+titleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleText.TextSize = 18
+titleText.Font = Enum.Font.GothamBold
+titleText.TextXAlignment = Enum.TextXAlignment.Left
+titleText.Parent = titleBar
+
+-- Close Button
+local closeButton = Instance.new("TextButton")
+closeButton.Name = "CloseButton"
+closeButton.Size = UDim2.new(0, 25, 0, 25)
+closeButton.Position = UDim2.new(1, -30, 0.5, -12.5)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.TextSize = 16
+closeButton.Font = Enum.Font.GothamBold
+closeButton.Parent = titleBar
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(0, 4)
+closeCorner.Parent = closeButton
+
+closeButton.MouseButton1Click:Connect(function()
+    mainGui:Destroy()
+    fpsGui:Destroy()
+end)
+
+-- Ping Label
+local pingLabel = Instance.new("TextLabel")
+pingLabel.Name = "PingLabel"
+pingLabel.Size = UDim2.new(1, -20, 0, 20)
+pingLabel.Position = UDim2.new(0, 10, 0, 45)
+pingLabel.BackgroundTransparency = 1
+pingLabel.Text = "Ping: 0ms"
+pingLabel.TextColor3 = Color3.fromRGB(255, 200, 0)
+pingLabel.TextSize = 14
+pingLabel.Font = Enum.Font.GothamMedium
+pingLabel.TextXAlignment = Enum.TextXAlignment.Left
+pingLabel.Parent = mainFrame
+
+-- Delay Label
+local delayLabel = Instance.new("TextLabel")
+delayLabel.Name = "DelayLabel"
+delayLabel.Size = UDim2.new(1, -20, 0, 20)
+delayLabel.Position = UDim2.new(0, 10, 0, 70)
+delayLabel.BackgroundTransparency = 1
+delayLabel.Text = "Delay: 0ms"
+delayLabel.TextColor3 = Color3.fromRGB(150, 255, 150)
+delayLabel.TextSize = 14
+delayLabel.Font = Enum.Font.GothamMedium
+delayLabel.TextXAlignment = Enum.TextXAlignment.Left
+delayLabel.Parent = mainFrame
+
+-- Delay Slider Frame
+local sliderFrame = Instance.new("Frame")
+sliderFrame.Name = "SliderFrame"
+sliderFrame.Size = UDim2.new(1, -20, 0, 40)
+sliderFrame.Position = UDim2.new(0, 10, 0, 95)
+sliderFrame.BackgroundTransparency = 1
+sliderFrame.Parent = mainFrame
+
+-- Slider Background
+local sliderBg = Instance.new("Frame")
+sliderBg.Name = "SliderBg"
+sliderBg.Size = UDim2.new(1, 0, 0, 12)
+sliderBg.Position = UDim2.new(0, 0, 0.5, -6)
+sliderBg.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+sliderBg.BorderSizePixel = 0
+sliderBg.Parent = sliderFrame
+
+local bgCorner = Instance.new("UICorner")
+bgCorner.CornerRadius = UDim.new(0, 6)
+bgCorner.Parent = sliderBg
+
+-- Slider Fill
+local sliderFill = Instance.new("Frame")
+sliderFill.Name = "SliderFill"
+sliderFill.Size = UDim2.new(0.5, 0, 1, 0)
+sliderFill.BackgroundColor3 = Color3.fromRGB(255, 200, 0)
+sliderFill.BorderSizePixel = 0
+sliderFill.Parent = sliderBg
+
+local fillCorner = Instance.new("UICorner")
+fillCorner.CornerRadius = UDim.new(0, 6)
+fillCorner.Parent = sliderFill
+
+-- Slider Knob
+local sliderKnob = Instance.new("TextButton")
+sliderKnob.Name = "SliderKnob"
+sliderKnob.Size = UDim2.new(0, 20, 0, 20)
+sliderKnob.Position = UDim2.new(1, -10, 0.5, -10)
+sliderKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+sliderKnob.BorderSizePixel = 0
+sliderKnob.Text = ""
+sliderKnob.AutoButtonColor = false
+sliderKnob.Parent = sliderFill
+
+local knobCorner = Instance.new("UICorner")
+knobCorner.CornerRadius = UDim.new(1, 0)
+knobCorner.Parent = sliderKnob
+
+-- Grab Button
+local grabButton = Instance.new("TextButton")
+grabButton.Name = "GrabButton"
+grabButton.Size = UDim2.new(1, -20, 0, 45)
+grabButton.Position = UDim2.new(0, 10, 0, 145)
+grabButton.BackgroundColor3 = Color3.fromRGB(255, 200, 0)
+grabButton.Text = "TP + GRAB"
+grabButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+grabButton.TextSize = 20
+grabButton.Font = Enum.Font.GothamBold
+grabButton.AutoButtonColor = false
+grabButton.Parent = mainFrame
+
+local grabCorner = Instance.new("UICorner")
+grabCorner.CornerRadius = UDim.new(0, 6)
+grabCorner.Parent = grabButton
+
+-- Watermark
+local watermarkGui = Instance.new("ScreenGui")
+watermarkGui.Name = "U95X_Watermark"
+watermarkGui.ResetOnSpawn = false
+watermarkGui.IgnoreGuiInset = true
+watermarkGui.DisplayOrder = 999999
+watermarkGui.Parent = Players.LocalPlayer.PlayerGui
+
+local watermarkLabel = Instance.new("TextLabel")
+watermarkLabel.Size = UDim2.new(0, 200, 0, 30)
+watermarkLabel.Position = UDim2.new(0.5, -100, 0.95, -15)
+watermarkLabel.BackgroundTransparency = 0.5
+watermarkLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+watermarkLabel.Text = ".gg/u95xTs2BUS"
+watermarkLabel.TextColor3 = Color3.new(1, 1, 1)
+watermarkLabel.TextStrokeTransparency = 0
+watermarkLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
+watermarkLabel.Font = Enum.Font.GothamBold
+watermarkLabel.TextSize = 18
+watermarkLabel.Parent = watermarkGui
+
+local watermarkCorner = Instance.new("UICorner")
+watermarkCorner.CornerRadius = UDim.new(0, 4)
+watermarkCorner.Parent = watermarkLabel
+
+-- Dragging functionality (works on mobile too)
+local dragging = false
+local dragInput
+local dragStart
+local startPos
+
+local function updateDrag(input)
+    local delta = input.Position - dragStart
+    mainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+titleBar.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = mainFrame.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+titleBar.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        updateDrag(input)
+    end
+end)
+
+-- Button hover effects
+grabButton.MouseEnter:Connect(function()
+    grabButton.BackgroundColor3 = Color3.fromRGB(255, 220, 50)
+end)
+
+grabButton.MouseLeave:Connect(function()
+    grabButton.BackgroundColor3 = Color3.fromRGB(255, 200, 0)
+end)
+
+-- Slider functionality
+local sliderActive = false
+
+local function updateSlider(input)
+    local pos = input.Position.X
+    local bgPos = sliderBg.AbsolutePosition.X
+    local bgSize = sliderBg.AbsoluteSize.X
+    
+    local percent = math.clamp((pos - bgPos) / bgSize, 0, 1)
+    sliderFill.Size = UDim2.new(percent, 0, 1, 0)
+    
+    local delayMs = math.floor(percent * 200) -- 0-200ms range
+    delayLabel.Text = "Delay: " .. delayMs .. "ms"
+end
+
+sliderFill.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        sliderActive = true
+        updateSlider(input)
+    end
+end)
+
+sliderBg.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        sliderActive = true
+        updateSlider(input)
+    end
+end)
+
+sliderKnob.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        sliderActive = true
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if sliderActive and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+        updateSlider(input)
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        sliderActive = false
+    end
+end)
+
+-- Grab button functionality
+grabButton.MouseButton1Click:Connect(function()
+    grabButton.BackgroundColor3 = Color3.fromRGB(200, 150, 0)
+    grabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    
+    local character = Players.LocalPlayer.Character
+    if character then
+        local tool = character:FindFirstChildWhichIsA("Tool")
+        if tool then
+            print('Using tool: ' .. tool.Name)
+            
+            -- Get current delay from slider
+            local percent = sliderFill.Size.X.Scale
+            local delayMs = percent * 200
+            task.wait(delayMs / 1000)
+            
+            tool:Activate()
+            print("Tool activated")
+        end
+    end
+    
+    task.wait(0.1)
+    grabButton.BackgroundColor3 = Color3.fromRGB(255, 200, 0)
+    grabButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+end)
+
+-- Update ping and FPS
+local lastTime = tick()
+local lastPing = 0
+
+RunService.RenderStepped:Connect(function()
+    -- Update ping
+    local ping = Players.LocalPlayer:GetNetworkPing() * 1000
+    pingLabel.Text = "Ping: " .. math.floor(ping) .. "ms"
+    
+    -- Update FPS
+    local currentTime = tick()
+    local fps = math.floor(1 / (currentTime - lastTime))
+    lastTime = currentTime
+    
+    statsLabel.Text = fps .. " | " .. math.floor(ping)
+    
+    -- Update stats label color based on ping
+    if ping < 100 then
+        statsLabel.TextColor3 = Color3.fromRGB(100, 255, 100)
+    elseif ping < 200 then
+        statsLabel.TextColor3 = Color3.fromRGB(255, 200, 0)
+    else
+        statsLabel.TextColor3 = Color3.fromRGB(255, 100, 100)
+    end
+end)
+
+-- Initial delay text
+delayLabel.Text = "Delay: " .. math.floor(sliderFill.Size.X.Scale * 200) .. "ms"
