@@ -1,0 +1,1203 @@
+local Players = game:GetService('Players')
+local CoreGui = game:GetService('CoreGui')
+local TweenService = game:GetService('TweenService')
+local VirtualUser = game:GetService('VirtualUser')
+local RunService = game:GetService('RunService')
+local Stats = game:GetService('Stats')
+local UserInputService = game:GetService('UserInputService')
+local v11 = CoreGui:FindFirstChild("FlashGrabGUI")
+CoreGui.FlashGrabGUI:Destroy()
+local v13 = CoreGui:FindFirstChild("FPSPingDisplay")
+CoreGui.FPSPingDisplay:Destroy()
+local screengui_810 = Instance.new("ScreenGui")
+
+screengui_810.Name = "FPSPingDisplay"
+screengui_810.ResetOnSpawn = false
+screengui_810.Parent = screengui_810
+screengui_810.IgnoreGuiInset = true
+screengui_810.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local textlabel_118 = Instance.new("TextLabel")
+
+textlabel_118.Name = "StatsLabel"
+textlabel_118.Size = UDim2.new(0, 200, 0, 50)
+textlabel_118.Position = UDim2.new(0.5, -100, 0, 10)
+textlabel_118.BackgroundTransparency = 1
+textlabel_118.Text = "0 | 0"
+textlabel_118.TextColor3 = Color3.fromRGB(255, 200, 0)
+textlabel_118.TextSize = 36
+textlabel_118.Font = Font.GothamBold
+textlabel_118.TextStrokeTransparency = 0.5
+textlabel_118.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+textlabel_118.ZIndex = 999
+textlabel_118.Parent = textlabel_118
+local screengui_481 = Instance.new("ScreenGui")
+
+screengui_481.Name = "FlashGrabGUI"
+screengui_481.ResetOnSpawn = false
+screengui_481.Parent = screengui_481
+screengui_481.IgnoreGuiInset = true
+local frame_577 = Instance.new("Frame")
+
+frame_577.Name = "MainFrame"
+frame_577.Size = UDim2.new(0, 220, 0, 190)
+frame_577.Position = UDim2.new(0.5, -110, 0.5, -95)
+frame_577.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+frame_577.BackgroundTransparency = 0.125
+frame_577.BorderSizePixel = 2
+frame_577.BorderColor3 = Color3.fromRGB(255, 255, 255)
+frame_577.Active = true
+frame_577.Draggable = true
+frame_577.Parent = frame_577
+local uicorner_634 = Instance.new("UICorner")
+
+uicorner_634.CornerRadius = UDim.new(0, 6)
+uicorner_634.Parent = uicorner_634
+local frame_506 = Instance.new("Frame")
+
+frame_506.Size = UDim2.new(0, 2, 0, 2)
+frame_506.Position = UDim2.new(0.43976819422096, 0, 0.77913391869515, 0)
+frame_506.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_506.BackgroundTransparency = 0.7
+frame_506.BorderSizePixel = 0
+frame_506.ZIndex = 1
+local uicorner_112 = Instance.new("UICorner")
+
+uicorner_112.CornerRadius = UDim.new(1, 0)
+uicorner_112.Parent = uicorner_112
+local frame_298 = Instance.new("Frame")
+
+frame_298.Size = UDim2.new(0, 2, 0, 2)
+frame_298.Position = UDim2.new(0.050038253422827, 0, 0.83409426501021, 0)
+frame_298.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_298.BackgroundTransparency = 0.7
+frame_298.BorderSizePixel = 0
+frame_298.ZIndex = 1
+local uicorner_635 = Instance.new("UICorner")
+
+uicorner_635.CornerRadius = UDim.new(1, 0)
+uicorner_635.Parent = uicorner_635
+local frame_64 = Instance.new("Frame")
+
+frame_64.Size = UDim2.new(0, 2, 0, 2)
+frame_64.Position = UDim2.new(0.80285359174013, 0, 0.57302975980565, 0)
+frame_64.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_64.BackgroundTransparency = 0.7
+frame_64.BorderSizePixel = 0
+frame_64.ZIndex = 1
+local uicorner_242 = Instance.new("UICorner")
+
+uicorner_242.CornerRadius = UDim.new(1, 0)
+uicorner_242.Parent = uicorner_242
+local frame_977 = Instance.new("Frame")
+
+frame_977.Size = UDim2.new(0, 2, 0, 2)
+frame_977.Position = UDim2.new(0.27465373463929, 0, 0.60031835362315, 0)
+frame_977.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_977.BackgroundTransparency = 0.7
+frame_977.BorderSizePixel = 0
+frame_977.ZIndex = 1
+local uicorner_618 = Instance.new("UICorner")
+
+uicorner_618.CornerRadius = UDim.new(1, 0)
+uicorner_618.Parent = uicorner_618
+local frame_84 = Instance.new("Frame")
+
+frame_84.Size = UDim2.new(0, 2, 0, 2)
+frame_84.Position = UDim2.new(0.92015149071813, 0, 0.68308208556846, 0)
+frame_84.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_84.BackgroundTransparency = 0.7
+frame_84.BorderSizePixel = 0
+frame_84.ZIndex = 1
+local uicorner_201 = Instance.new("UICorner")
+
+uicorner_201.CornerRadius = UDim.new(1, 0)
+uicorner_201.Parent = uicorner_201
+local frame_835 = Instance.new("Frame")
+
+frame_835.Size = UDim2.new(0, 2, 0, 2)
+frame_835.Position = UDim2.new(0.90643207868561, 0, 0.70022518513724, 0)
+frame_835.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_835.BackgroundTransparency = 0.7
+frame_835.BorderSizePixel = 0
+frame_835.ZIndex = 1
+local uicorner_614 = Instance.new("UICorner")
+
+uicorner_614.CornerRadius = UDim.new(1, 0)
+uicorner_614.Parent = uicorner_614
+local frame_156 = Instance.new("Frame")
+
+frame_156.Size = UDim2.new(0, 2, 0, 2)
+frame_156.Position = UDim2.new(0.3157482878305, 0, 0.19494253816083, 0)
+frame_156.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_156.BackgroundTransparency = 0.7
+frame_156.BorderSizePixel = 0
+frame_156.ZIndex = 1
+local uicorner_990 = Instance.new("UICorner")
+
+uicorner_990.CornerRadius = UDim.new(1, 0)
+uicorner_990.Parent = uicorner_990
+local frame_499 = Instance.new("Frame")
+
+frame_499.Size = UDim2.new(0, 2, 0, 2)
+frame_499.Position = UDim2.new(0.01470853574574, 0, 0.41917874943465, 0)
+frame_499.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_499.BackgroundTransparency = 0.7
+frame_499.BorderSizePixel = 0
+frame_499.ZIndex = 1
+local uicorner_72 = Instance.new("UICorner")
+
+uicorner_72.CornerRadius = UDim.new(1, 0)
+uicorner_72.Parent = uicorner_72
+local frame_826 = Instance.new("Frame")
+
+frame_826.Size = UDim2.new(0, 2, 0, 2)
+frame_826.Position = UDim2.new(0.23415408097208, 0, 0.27195177320391, 0)
+frame_826.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_826.BackgroundTransparency = 0.7
+frame_826.BorderSizePixel = 0
+frame_826.ZIndex = 1
+local uicorner_426 = Instance.new("UICorner")
+
+uicorner_426.CornerRadius = UDim.new(1, 0)
+uicorner_426.Parent = uicorner_426
+local frame_299 = Instance.new("Frame")
+
+frame_299.Size = UDim2.new(0, 2, 0, 2)
+frame_299.Position = UDim2.new(0.93547280691564, 0, 0.81952616991475, 0)
+frame_299.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_299.BackgroundTransparency = 0.7
+frame_299.BorderSizePixel = 0
+frame_299.ZIndex = 1
+local uicorner_981 = Instance.new("UICorner")
+
+uicorner_981.CornerRadius = UDim.new(1, 0)
+uicorner_981.Parent = uicorner_981
+local frame_242 = Instance.new("Frame")
+
+frame_242.Size = UDim2.new(0, 2, 0, 2)
+frame_242.Position = UDim2.new(0.97135459957644, 0, 0.12676430074498, 0)
+frame_242.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_242.BackgroundTransparency = 0.7
+frame_242.BorderSizePixel = 0
+frame_242.ZIndex = 1
+local uicorner_942 = Instance.new("UICorner")
+
+uicorner_942.CornerRadius = UDim.new(1, 0)
+uicorner_942.Parent = uicorner_942
+local frame_88 = Instance.new("Frame")
+
+frame_88.Size = UDim2.new(0, 2, 0, 2)
+frame_88.Position = UDim2.new(0.74128662003204, 0, 0.4609436490573, 0)
+frame_88.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_88.BackgroundTransparency = 0.7
+frame_88.BorderSizePixel = 0
+frame_88.ZIndex = 1
+local uicorner_282 = Instance.new("UICorner")
+
+uicorner_282.CornerRadius = UDim.new(1, 0)
+uicorner_282.Parent = uicorner_282
+local frame_898 = Instance.new("Frame")
+
+frame_898.Size = UDim2.new(0, 2, 0, 2)
+frame_898.Position = UDim2.new(0.22993502859026, 0, 0.4269877509214, 0)
+frame_898.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_898.BackgroundTransparency = 0.7
+frame_898.BorderSizePixel = 0
+frame_898.ZIndex = 1
+local uicorner_318 = Instance.new("UICorner")
+
+uicorner_318.CornerRadius = UDim.new(1, 0)
+uicorner_318.Parent = uicorner_318
+local frame_315 = Instance.new("Frame")
+
+frame_315.Size = UDim2.new(0, 2, 0, 2)
+frame_315.Position = UDim2.new(0.12759013706818, 0, 0.91752501251176, 0)
+frame_315.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_315.BackgroundTransparency = 0.7
+frame_315.BorderSizePixel = 0
+frame_315.ZIndex = 1
+local uicorner_587 = Instance.new("UICorner")
+
+uicorner_587.CornerRadius = UDim.new(1, 0)
+uicorner_587.Parent = uicorner_587
+local frame_486 = Instance.new("Frame")
+
+frame_486.Size = UDim2.new(0, 2, 0, 2)
+frame_486.Position = UDim2.new(0.85250847507268, 0, 0.7049816288054, 0)
+frame_486.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_486.BackgroundTransparency = 0.7
+frame_486.BorderSizePixel = 0
+frame_486.ZIndex = 1
+local uicorner_306 = Instance.new("UICorner")
+
+uicorner_306.CornerRadius = UDim.new(1, 0)
+uicorner_306.Parent = uicorner_306
+local frame_526 = Instance.new("Frame")
+
+frame_526.Size = UDim2.new(0, 2, 0, 2)
+frame_526.Position = UDim2.new(0.076383201871067, 0, 0.81279472401366, 0)
+frame_526.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_526.BackgroundTransparency = 0.7
+frame_526.BorderSizePixel = 0
+frame_526.ZIndex = 1
+local uicorner_653 = Instance.new("UICorner")
+
+uicorner_653.CornerRadius = UDim.new(1, 0)
+uicorner_653.Parent = uicorner_653
+local frame_798 = Instance.new("Frame")
+
+frame_798.Size = UDim2.new(0, 2, 0, 2)
+frame_798.Position = UDim2.new(0.10606957552955, 0, 0.13946596719325, 0)
+frame_798.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_798.BackgroundTransparency = 0.7
+frame_798.BorderSizePixel = 0
+frame_798.ZIndex = 1
+local uicorner_259 = Instance.new("UICorner")
+
+uicorner_259.CornerRadius = UDim.new(1, 0)
+uicorner_259.Parent = uicorner_259
+local frame_671 = Instance.new("Frame")
+
+frame_671.Size = UDim2.new(0, 2, 0, 2)
+frame_671.Position = UDim2.new(0.28687046794221, 0, 0.10068387864158, 0)
+frame_671.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_671.BackgroundTransparency = 0.7
+frame_671.BorderSizePixel = 0
+frame_671.ZIndex = 1
+local uicorner_99 = Instance.new("UICorner")
+
+uicorner_99.CornerRadius = UDim.new(1, 0)
+uicorner_99.Parent = uicorner_99
+local frame_781 = Instance.new("Frame")
+
+frame_781.Size = UDim2.new(0, 2, 0, 2)
+frame_781.Position = UDim2.new(0.91965205501765, 0, 0.52989095076919, 0)
+frame_781.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_781.BackgroundTransparency = 0.7
+frame_781.BorderSizePixel = 0
+frame_781.ZIndex = 1
+local uicorner_699 = Instance.new("UICorner")
+
+uicorner_699.CornerRadius = UDim.new(1, 0)
+uicorner_699.Parent = uicorner_699
+local frame_469 = Instance.new("Frame")
+
+frame_469.Size = UDim2.new(0, 2, 0, 2)
+frame_469.Position = UDim2.new(0.99300990719348, 0, 0.93628111854196, 0)
+frame_469.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_469.BackgroundTransparency = 0.7
+frame_469.BorderSizePixel = 0
+frame_469.ZIndex = 1
+local uicorner_174 = Instance.new("UICorner")
+
+uicorner_174.CornerRadius = UDim.new(1, 0)
+uicorner_174.Parent = uicorner_174
+local frame_16 = Instance.new("Frame")
+
+frame_16.Size = UDim2.new(0, 2, 0, 2)
+frame_16.Position = UDim2.new(0.82512700045481, 0, 0.84688166389242, 0)
+frame_16.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_16.BackgroundTransparency = 0.7
+frame_16.BorderSizePixel = 0
+frame_16.ZIndex = 1
+local uicorner_828 = Instance.new("UICorner")
+
+uicorner_828.CornerRadius = UDim.new(1, 0)
+uicorner_828.Parent = uicorner_828
+local frame_226 = Instance.new("Frame")
+
+frame_226.Size = UDim2.new(0, 2, 0, 2)
+frame_226.Position = UDim2.new(0.27630027802661, 0, 0.97172548621893, 0)
+frame_226.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_226.BackgroundTransparency = 0.7
+frame_226.BorderSizePixel = 0
+frame_226.ZIndex = 1
+local uicorner_366 = Instance.new("UICorner")
+
+uicorner_366.CornerRadius = UDim.new(1, 0)
+uicorner_366.Parent = uicorner_366
+local frame_237 = Instance.new("Frame")
+
+frame_237.Size = UDim2.new(0, 2, 0, 2)
+frame_237.Position = UDim2.new(0.20683543011546, 0, 0.64690339704975, 0)
+frame_237.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_237.BackgroundTransparency = 0.7
+frame_237.BorderSizePixel = 0
+frame_237.ZIndex = 1
+local uicorner_337 = Instance.new("UICorner")
+
+uicorner_337.CornerRadius = UDim.new(1, 0)
+uicorner_337.Parent = uicorner_337
+local frame_739 = Instance.new("Frame")
+
+frame_739.Size = UDim2.new(0, 2, 0, 2)
+frame_739.Position = UDim2.new(0.086996231228113, 0, 0.17116769449785, 0)
+frame_739.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_739.BackgroundTransparency = 0.7
+frame_739.BorderSizePixel = 0
+frame_739.ZIndex = 1
+local uicorner_270 = Instance.new("UICorner")
+
+uicorner_270.CornerRadius = UDim.new(1, 0)
+uicorner_270.Parent = uicorner_270
+local frame_353 = Instance.new("Frame")
+
+frame_353.Size = UDim2.new(0, 2, 0, 2)
+frame_353.Position = UDim2.new(0.25508681125939, 0, 0.67082124389708, 0)
+frame_353.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+frame_353.BackgroundTransparency = 0.7
+frame_353.BorderSizePixel = 0
+frame_353.ZIndex = 1
+local uicorner_290 = Instance.new("UICorner")
+
+uicorner_290.CornerRadius = UDim.new(1, 0)
+uicorner_290.Parent = uicorner_290
+local textlabel_60 = Instance.new("TextLabel")
+
+textlabel_60.Name = "Title"
+textlabel_60.Size = UDim2.new(1, 0, 0, 25)
+textlabel_60.Position = UDim2.new(0, 0, 0, 5)
+textlabel_60.BackgroundTransparency = 1
+textlabel_60.Text = "Rookie Flash TP ⚡"
+textlabel_60.TextColor3 = Color3.fromRGB(255, 255, 255)
+textlabel_60.TextSize = 17.5
+textlabel_60.Font = Font.GothamBold
+textlabel_60.ZIndex = 2
+textlabel_60.Parent = textlabel_60
+local textlabel_444 = Instance.new("TextLabel")
+
+textlabel_444.Name = "PingLabel"
+textlabel_444.Size = UDim2.new(1, 0, 0, 18)
+textlabel_444.Position = UDim2.new(0, 0, 0, 30)
+textlabel_444.BackgroundTransparency = 1
+textlabel_444.Text = "Ping: 0ms"
+textlabel_444.TextColor3 = Color3.fromRGB(255, 200, 0)
+textlabel_444.TextSize = 11
+textlabel_444.Font = Font.GothamMedium
+textlabel_444.ZIndex = 2
+textlabel_444.Parent = textlabel_444
+local textlabel_795 = Instance.new("TextLabel")
+
+textlabel_795.Name = "DelayLabel"
+textlabel_795.Size = UDim2.new(1, 0, 0, 18)
+textlabel_795.Position = UDim2.new(0, 0, 0, 48)
+textlabel_795.BackgroundTransparency = 1
+textlabel_795.Text = "Delay: 103ms"
+textlabel_795.TextColor3 = Color3.fromRGB(150, 255, 150)
+textlabel_795.TextSize = 11
+textlabel_795.Font = Font.GothamMedium
+textlabel_795.ZIndex = 2
+textlabel_795.Parent = textlabel_795
+local textbutton_906 = Instance.new("TextButton")
+
+textbutton_906.Name = "PotionButton"
+textbutton_906.Size = UDim2.new(0, 160, 0, 25)
+textbutton_906.Position = UDim2.new(0.5, -80, 0, 70)
+textbutton_906.BackgroundTransparency = 1
+textbutton_906.Text = "Auto Potion: Off"
+textbutton_906.TextColor3 = Color3.fromRGB(255, 100, 100)
+textbutton_906.TextSize = 17.5
+textbutton_906.Font = Font.GothamBold
+textbutton_906.AutoButtonColor = false
+textbutton_906.ZIndex = 2
+textbutton_906.Parent = textbutton_906
+local uicorner_272 = Instance.new("UICorner")
+
+uicorner_272.CornerRadius = UDim.new(0, 4)
+uicorner_272.Parent = uicorner_272
+local textbutton_273 = Instance.new("TextButton")
+
+textbutton_273.Name = "GrabButton"
+textbutton_273.Size = UDim2.new(0, 160, 0, 35)
+textbutton_273.Position = UDim2.new(0.5, -80, 0, 105)
+textbutton_273.BackgroundTransparency = 1
+textbutton_273.Text = "TP + GRAB"
+textbutton_273.TextColor3 = Color3.fromRGB(255, 255, 255)
+textbutton_273.TextSize = 17.5
+textbutton_273.Font = Font.GothamBold
+textbutton_273.AutoButtonColor = false
+textbutton_273.ZIndex = 2
+textbutton_273.Parent = textbutton_273
+local uicorner_772 = Instance.new("UICorner")
+
+uicorner_772.CornerRadius = UDim.new(0, 4)
+uicorner_772.Parent = uicorner_772
+local frame_498 = Instance.new("Frame")
+
+frame_498.Name = "SliderFrame"
+frame_498.Size = UDim2.new(0, 200, 0, 30)
+frame_498.Position = UDim2.new(0.5, -100, 0, 150)
+frame_498.BackgroundTransparency = 1
+frame_498.ZIndex = 2
+frame_498.Parent = frame_498
+local frame_549 = Instance.new("Frame")
+
+frame_549.Name = "SliderBg"
+frame_549.Size = UDim2.new(1, 0, 0, 10)
+frame_549.Position = UDim2.new(0, 0, 0, 10)
+frame_549.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+frame_549.BorderSizePixel = 0
+frame_549.ZIndex = 2
+frame_549.Parent = frame_549
+local uicorner_744 = Instance.new("UICorner")
+
+uicorner_744.CornerRadius = UDim.new(0, 5)
+uicorner_744.Parent = uicorner_744
+local frame_864 = Instance.new("Frame")
+
+frame_864.Name = "SliderFill"
+frame_864.Size = UDim2.new(0.5, 0, 1, 0)
+frame_864.BackgroundColor3 = Color3.fromRGB(255, 200, 0)
+frame_864.BorderSizePixel = 0
+frame_864.ZIndex = 3
+frame_864.Parent = frame_864
+local uicorner_85 = Instance.new("UICorner")
+
+uicorner_85.CornerRadius = UDim.new(0, 5)
+uicorner_85.Parent = uicorner_85
+local textbutton_105 = Instance.new("TextButton")
+
+textbutton_105.Name = "SliderKnob"
+textbutton_105.Size = UDim2.new(0, 16, 0, 16)
+textbutton_105.Position = UDim2.new(1, -8, -0.3, 0)
+textbutton_105.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+textbutton_105.BorderSizePixel = 0
+textbutton_105.Text = ""
+textbutton_105.AutoButtonColor = false
+textbutton_105.ZIndex = 4
+textbutton_105.Parent = textbutton_105
+local uicorner_101 = Instance.new("UICorner")
+
+uicorner_101.CornerRadius = UDim.new(1, 0)
+uicorner_101.Parent = uicorner_101
+frame_549.InputBegan:Connect(function(S, c)
+    local v1 = UserInputService.GetMouseLocation(UserInputService)
+    local calc_2 = (v1.X - frame_549.AbsolutePosition.X)
+end)
+frame_864.InputBegan:Connect(function(S, c, d)
+    local v1 = UserInputService.GetMouseLocation(UserInputService)
+    local calc_2 = (v1.X - frame_549.AbsolutePosition.X)
+end)
+textbutton_105.InputBegan:Connect(function(S, c, d, M, J)
+    local v1 = S.Consume(S)
+end)
+UserInputService.InputChanged:Connect(function(S, c, d, M, J)
+    local v1 = UserInputService.GetMouseLocation(UserInputService)
+    local calc_2 = (v1.X - frame_549.AbsolutePosition.X)
+end)
+frame_549.InputEnded:Connect(function(S, c, d, M) end)
+frame_864.InputEnded:Connect(function(S, c, d, M) end)
+textbutton_105.InputEnded:Connect(function(S, c, d, M) end)
+UserInputService.InputEnded:Connect(function(S, c, d, M) end)
+textbutton_906.MouseButton1Click:Connect(function(S, c, d)
+    textbutton_906.Text = "Auto Potion: On"
+    textbutton_906.TextColor3 = Color3.fromRGB(100, 255, 100)
+end)
+textbutton_906.MouseEnter:Connect(function(S, c, d, M, J)
+    textbutton_906.TextColor3 = Color3.fromRGB(150, 255, 150)
+end)
+textbutton_906.MouseLeave:Connect(function(S, c, d)
+    textbutton_906.TextColor3 = Color3.fromRGB(100, 255, 100)
+end)
+textbutton_273.MouseEnter:Connect(function(S, c, d, M, J)
+    textbutton_273.TextColor3 = Color3.fromRGB(255, 200, 0)
+end)
+textbutton_273.MouseLeave:Connect(function(arg1, arg2)
+    textbutton_273.TextColor3 = Color3.fromRGB(255, 255, 255)
+end)
+tick()
+tick()
+RunService.RenderStepped:Connect(function(S, c, d, M)
+    tick()
+end)
+textbutton_273.MouseButton1Click:Connect(function(S, c)
+    textbutton_273.TextColor3 = Color3.fromRGB(200, 200, 200)
+    task.wait(0.1)
+    textbutton_273.TextColor3 = Color3.fromRGB(255, 255, 255)
+    local v4 = game.Players.LocalPlayer:FindFirstChild("Backpack")
+    local v5 = v4:FindFirstChild("Giant Potion")
+    print("Using Giant Potion")
+    local v7 = v5:Activate()
+    local v8 = game.Players.LocalPlayer:FindFirstChild("Backpack")
+    local v9 = v8:FindFirstChild("Flash")
+    local concat_10 = 'Activating flash tool: ' .. v9.Name
+    print(concat_10)
+    local v12 = v9:Activate()
+    print("Flash tool activated successfully")
+    task.wait(0.103)
+    local v15 = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+end)
+task.spawn(function(S, c, d, M, J)
+    local v1 = game:GetService("Workspace"):FindFirstChild("Plots")
+    local v2 = v1:GetChildren()
+    local v3 = game:GetService("Workspace"):FindFirstChild("Plots")
+    v3.ChildAdded:Connect(function(S, c, d, M)
+    local v1 = game:GetService("Workspace"):FindFirstChild("Plots")
+    local v2 = v1:GetChildren()
+end)
+    v3.ChildRemoved:Connect(function(S, c, d, M)
+    local v1 = game:GetService("Workspace"):FindFirstChild("Plots")
+    local v2 = v1:GetChildren()
+end)
+end)
+task.spawn(function(S)
+    local v1 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_2 = (v1 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v5 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_6 = (v5 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v9 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_10 = (v9 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v13 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_14 = (v13 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v17 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_18 = (v17 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v21 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_22 = (v21 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v25 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_26 = (v25 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v29 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_30 = (v29 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v33 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_34 = (v33 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v37 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_38 = (v37 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v41 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_42 = (v41 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v45 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_46 = (v45 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v49 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_50 = (v49 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v53 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_54 = (v53 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v57 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_58 = (v57 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v61 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_62 = (v61 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v65 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_66 = (v65 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v69 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_70 = (v69 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v73 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_74 = (v73 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v77 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_78 = (v77 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v81 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_82 = (v81 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v85 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_86 = (v85 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v89 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_90 = (v89 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v93 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_94 = (v93 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v97 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_98 = (v97 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v101 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_102 = (v101 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v105 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_106 = (v105 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v109 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_110 = (v109 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v113 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_114 = (v113 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v117 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_118 = (v117 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v121 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_122 = (v121 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v125 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_126 = (v125 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v129 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_130 = (v129 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v133 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_134 = (v133 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v137 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_138 = (v137 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v141 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_142 = (v141 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v145 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_146 = (v145 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v149 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_150 = (v149 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v153 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_154 = (v153 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v157 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_158 = (v157 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v161 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_162 = (v161 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v165 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_166 = (v165 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v169 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_170 = (v169 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v173 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_174 = (v173 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v177 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_178 = (v177 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v181 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_182 = (v181 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v185 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_186 = (v185 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v189 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_190 = (v189 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v193 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_194 = (v193 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v197 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_198 = (v197 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v201 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_202 = (v201 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v205 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_206 = (v205 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v209 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_210 = (v209 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v213 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_214 = (v213 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v217 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_218 = (v217 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v221 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_222 = (v221 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v225 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_226 = (v225 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v229 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_230 = (v229 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v233 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_234 = (v233 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v237 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_238 = (v237 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v241 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_242 = (v241 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v245 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_246 = (v245 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v249 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_250 = (v249 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v253 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_254 = (v253 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v257 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_258 = (v257 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v261 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_262 = (v261 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v265 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_266 = (v265 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v269 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_270 = (v269 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v273 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_274 = (v273 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v277 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_278 = (v277 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v281 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_282 = (v281 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v285 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_286 = (v285 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v289 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_290 = (v289 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v293 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_294 = (v293 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v297 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_298 = (v297 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v301 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_302 = (v301 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v305 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_306 = (v305 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v309 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_310 = (v309 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v313 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_314 = (v313 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v317 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_318 = (v317 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v321 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_322 = (v321 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v325 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_326 = (v325 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v329 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_330 = (v329 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v333 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_334 = (v333 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v337 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_338 = (v337 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v341 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_342 = (v341 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v345 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_346 = (v345 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v349 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_350 = (v349 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v353 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_354 = (v353 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v357 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_358 = (v357 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v361 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_362 = (v361 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v365 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_366 = (v365 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v369 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_370 = (v369 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v373 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_374 = (v373 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v377 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_378 = (v377 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v381 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_382 = (v381 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v385 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_386 = (v385 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v389 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_390 = (v389 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v393 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_394 = (v393 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v397 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_398 = (v397 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v401 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_402 = (v401 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v405 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_406 = (v405 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v409 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_410 = (v409 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v413 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_414 = (v413 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v417 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_418 = (v417 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v421 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_422 = (v421 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v425 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_426 = (v425 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+    task.wait(0.5)
+    local v429 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_430 = (v429 * 1000)
+    textlabel_444.Text = "Ping: 45ms"
+end)
+task.spawn(function(arg1, arg2)
+    local v1 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_2 = (v1 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v5 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_6 = (v5 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v9 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_10 = (v9 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v13 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_14 = (v13 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v17 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_18 = (v17 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v21 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_22 = (v21 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v25 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_26 = (v25 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v29 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_30 = (v29 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v33 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_34 = (v33 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v37 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_38 = (v37 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v41 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_42 = (v41 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v45 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_46 = (v45 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v49 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_50 = (v49 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v53 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_54 = (v53 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v57 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_58 = (v57 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v61 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_62 = (v61 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v65 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_66 = (v65 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v69 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_70 = (v69 * 1000)
+    textlabel_118.Text = "0 | 45"
+    task.wait(0.2)
+    local v73 = game.Players.LocalPlayer.GetNetworkPing(game.Players.LocalPlayer)
+    local calc_74 = (v73 * 1000)
+    textlabel_118.Text = "0 | 45"
+end)
+RunService.RenderStepped:Connect(function(S)
+    local calc_1 = (frame_506.Position.X.Scale + "Vector2.new(-5e-05, 5e-05).X")
+    local calc_2 = (frame_506.Position.Y.Scale + "Vector2.new(-5e-05, 5e-05).Y")
+    local _3 =  calc_1 < 0
+    local _4 =  calc_2 < 0
+    frame_506.Position = UDim2.new(1, 0, 1, 0)
+    local calc_6 = (frame_298.Position.X.Scale + "Vector2.new(-0.0001, 0.0).X")
+    local calc_7 = (frame_298.Position.Y.Scale + "Vector2.new(-0.0001, 0.0).Y")
+    local _8 =  calc_6 < 0
+    local _9 =  calc_7 < 0
+    frame_298.Position = UDim2.new(1, 0, 1, 0)
+    local calc_11 = (frame_64.Position.X.Scale + "Vector2.new(0.0001, 0.00025).X")
+    local calc_12 = (frame_64.Position.Y.Scale + "Vector2.new(0.0001, 0.00025).Y")
+    local _13 =  calc_11 < 0
+    local _14 =  calc_12 < 0
+    frame_64.Position = UDim2.new(1, 0, 1, 0)
+    local calc_16 = (frame_977.Position.X.Scale + "Vector2.new(0.00015, 0.0004).X")
+    local calc_17 = (frame_977.Position.Y.Scale + "Vector2.new(0.00015, 0.0004).Y")
+    local _18 =  calc_16 < 0
+    local _19 =  calc_17 < 0
+    frame_977.Position = UDim2.new(1, 0, 1, 0)
+    local calc_21 = (frame_84.Position.X.Scale + "Vector2.new(-0.0001, -0.00025).X")
+    local calc_22 = (frame_84.Position.Y.Scale + "Vector2.new(-0.0001, -0.00025).Y")
+    local _23 =  calc_21 < 0
+    local _24 =  calc_22 < 0
+    frame_84.Position = UDim2.new(1, 0, 1, 0)
+    local calc_26 = (frame_835.Position.X.Scale + "Vector2.new(-0.0005, -0.00035).X")
+    local calc_27 = (frame_835.Position.Y.Scale + "Vector2.new(-0.0005, -0.00035).Y")
+    local _28 =  calc_26 < 0
+    local _29 =  calc_27 < 0
+    frame_835.Position = UDim2.new(1, 0, 1, 0)
+    local calc_31 = (frame_156.Position.X.Scale + "Vector2.new(0.00045, 0.0001).X")
+    local calc_32 = (frame_156.Position.Y.Scale + "Vector2.new(0.00045, 0.0001).Y")
+    local _33 =  calc_31 < 0
+    local _34 =  calc_32 < 0
+    frame_156.Position = UDim2.new(1, 0, 1, 0)
+    local calc_36 = (frame_499.Position.X.Scale + "Vector2.new(-0.00025, 0.0005).X")
+    local calc_37 = (frame_499.Position.Y.Scale + "Vector2.new(-0.00025, 0.0005).Y")
+    local _38 =  calc_36 < 0
+    local _39 =  calc_37 < 0
+    frame_499.Position = UDim2.new(1, 0, 1, 0)
+    local calc_41 = (frame_826.Position.X.Scale + "Vector2.new(0.00035, 0.0004).X")
+    local calc_42 = (frame_826.Position.Y.Scale + "Vector2.new(0.00035, 0.0004).Y")
+    local _43 =  calc_41 < 0
+    local _44 =  calc_42 < 0
+    frame_826.Position = UDim2.new(1, 0, 1, 0)
+    local calc_46 = (frame_299.Position.X.Scale + "Vector2.new(-0.0004, -0.0003).X")
+    local calc_47 = (frame_299.Position.Y.Scale + "Vector2.new(-0.0004, -0.0003).Y")
+    local _48 =  calc_46 < 0
+    local _49 =  calc_47 < 0
+    frame_299.Position = UDim2.new(1, 0, 1, 0)
+    local calc_51 = (frame_242.Position.X.Scale + "Vector2.new(0.0001, -0.00035).X")
+    local calc_52 = (frame_242.Position.Y.Scale + "Vector2.new(0.0001, -0.00035).Y")
+    local _53 =  calc_51 < 0
+    local _54 =  calc_52 < 0
+    frame_242.Position = UDim2.new(1, 0, 1, 0)
+    local calc_56 = (frame_88.Position.X.Scale + "Vector2.new(0.00025, -0.0001).X")
+    local calc_57 = (frame_88.Position.Y.Scale + "Vector2.new(0.00025, -0.0001).Y")
+    local _58 =  calc_56 < 0
+    local _59 =  calc_57 < 0
+    frame_88.Position = UDim2.new(1, 0, 1, 0)
+    local calc_61 = (frame_898.Position.X.Scale + "Vector2.new(-0.0002, 0.0002).X")
+    local calc_62 = (frame_898.Position.Y.Scale + "Vector2.new(-0.0002, 0.0002).Y")
+    local _63 =  calc_61 < 0
+    local _64 =  calc_62 < 0
+    frame_898.Position = UDim2.new(1, 0, 1, 0)
+    local calc_66 = (frame_315.Position.X.Scale + "Vector2.new(5e-05, 0.0003).X")
+    local calc_67 = (frame_315.Position.Y.Scale + "Vector2.new(5e-05, 0.0003).Y")
+    local _68 =  calc_66 < 0
+    local _69 =  calc_67 < 0
+    frame_315.Position = UDim2.new(1, 0, 1, 0)
+    local calc_71 = (frame_486.Position.X.Scale + "Vector2.new(0.00035, 0.00035).X")
+    local calc_72 = (frame_486.Position.Y.Scale + "Vector2.new(0.00035, 0.00035).Y")
+    local _73 =  calc_71 < 0
+    local _74 =  calc_72 < 0
+    frame_486.Position = UDim2.new(1, 0, 1, 0)
+    local calc_76 = (frame_526.Position.X.Scale + "Vector2.new(-0.0005, -0.0001).X")
+    local calc_77 = (frame_526.Position.Y.Scale + "Vector2.new(-0.0005, -0.0001).Y")
+    local _78 =  calc_76 < 0
+    local _79 =  calc_77 < 0
+    frame_526.Position = UDim2.new(1, 0, 1, 0)
+    local calc_81 = (frame_798.Position.X.Scale + "Vector2.new(-0.0001, 0.0004).X")
+    local calc_82 = (frame_798.Position.Y.Scale + "Vector2.new(-0.0001, 0.0004).Y")
+    local _83 =  calc_81 < 0
+    local _84 =  calc_82 < 0
+    frame_798.Position = UDim2.new(1, 0, 1, 0)
+    local calc_86 = (frame_671.Position.X.Scale + "Vector2.new(0.0001, -0.0001).X")
+    local calc_87 = (frame_671.Position.Y.Scale + "Vector2.new(0.0001, -0.0001).Y")
+    local _88 =  calc_86 < 0
+    local _89 =  calc_87 < 0
+    frame_671.Position = UDim2.new(1, 0, 1, 0)
+    local calc_91 = (frame_781.Position.X.Scale + "Vector2.new(0.0, -0.00045).X")
+    local calc_92 = (frame_781.Position.Y.Scale + "Vector2.new(0.0, -0.00045).Y")
+    local _93 =  calc_91 < 0
+    local _94 =  calc_92 < 0
+    frame_781.Position = UDim2.new(1, 0, 1, 0)
+    local calc_96 = (frame_469.Position.X.Scale + "Vector2.new(-0.0002, 0.0003).X")
+    local calc_97 = (frame_469.Position.Y.Scale + "Vector2.new(-0.0002, 0.0003).Y")
+    local _98 =  calc_96 < 0
+    local _99 =  calc_97 < 0
+    frame_469.Position = UDim2.new(1, 0, 1, 0)
+    local calc_101 = (frame_16.Position.X.Scale + "Vector2.new(0.0, 0.0004).X")
+    local calc_102 = (frame_16.Position.Y.Scale + "Vector2.new(0.0, 0.0004).Y")
+    local _103 =  calc_101 < 0
+    local _104 =  calc_102 < 0
+    frame_16.Position = UDim2.new(1, 0, 1, 0)
+    local calc_106 = (frame_226.Position.X.Scale + "Vector2.new(5e-05, -0.00015).X")
+    local calc_107 = (frame_226.Position.Y.Scale + "Vector2.new(5e-05, -0.00015).Y")
+    local _108 =  calc_106 < 0
+    local _109 =  calc_107 < 0
+    frame_226.Position = UDim2.new(1, 0, 1, 0)
+    local calc_111 = (frame_237.Position.X.Scale + "Vector2.new(-0.0002, -0.00025).X")
+    local calc_112 = (frame_237.Position.Y.Scale + "Vector2.new(-0.0002, -0.00025).Y")
+    local _113 =  calc_111 < 0
+    local _114 =  calc_112 < 0
+    frame_237.Position = UDim2.new(1, 0, 1, 0)
+    local calc_116 = (frame_739.Position.X.Scale + "Vector2.new(0.0003, 0.0002).X")
+    local calc_117 = (frame_739.Position.Y.Scale + "Vector2.new(0.0003, 0.0002).Y")
+    local _118 =  calc_116 < 0
+    local _119 =  calc_117 < 0
+    frame_739.Position = UDim2.new(1, 0, 1, 0)
+    local calc_121 = (frame_353.Position.X.Scale + "Vector2.new(-5e-05, 0.0005).X")
+    local calc_122 = (frame_353.Position.Y.Scale + "Vector2.new(-5e-05, 0.0005).Y")
+    local _123 =  calc_121 < 0
+    local _124 =  calc_122 < 0
+    frame_353.Position = UDim2.new(1, 0, 1, 0)
+end)
+local Players = game:GetService('Players')
+local v429 = game.Players.LocalPlayer.PlayerGui:FindFirstChild("U95X_Watermark")
+v429:Destroy()
+local screengui_80 = Instance.new("ScreenGui")
+
+screengui_80.Name = "U95X_Watermark"
+screengui_80.ResetOnSpawn = false
+screengui_80.IgnoreGuiInset = true
+screengui_80.DisplayOrder = 999999
+local v436 = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+screengui_80.Parent = screengui_80
+local textlabel_888 = Instance.new("TextLabel")
+
+textlabel_888.Size = UDim2.new(0.6, 0, 0, 25)
+textlabel_888.Position = UDim2.new(0.2, 0, 0.5, -30)
+textlabel_888.BackgroundTransparency = 1
+textlabel_888.Text = ".gg/u95xTs2BUS"
+textlabel_888.TextColor3 = Color3.new(1, 1, 1)
+textlabel_888.TextStrokeTransparency = 0
+textlabel_888.TextStrokeColor3 = Color3.new(0, 0, 0)
+textlabel_888.Font = Font.GothamBold
+textlabel_888.TextScaled = true
+textlabel_888.ZIndex = 999999
+textlabel_888.Parent = textlabel_888
